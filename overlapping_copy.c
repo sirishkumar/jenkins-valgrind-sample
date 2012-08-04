@@ -30,7 +30,7 @@ overlapping_copy_a (void)
   void *a2 = a1;
   memset (a1, 0, REGION_SIZE);	/* Initialize source region */
   memcpy (a1, a2, REGION_SIZE);	/* Source and destination are the same */
-  free(a1);
+  free (a1);
 }
 
 /* ------------------------------------------------------------------------ */
