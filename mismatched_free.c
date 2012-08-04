@@ -39,11 +39,13 @@ illegal_free_from_heap_outside_allocated_region (void)
 static void
 leak_memory (void)
 {
-  int *i_ptr = malloc (sizeof (int));
-  double *d_ptr = malloc (sizeof (double));
   char *s = malloc (80);
-  *i_ptr = 1234;
+  double *d_ptr = malloc (sizeof (double));
+  float *f_ptr = malloc (sizeof (float));
+  int *i_ptr = malloc (sizeof (int));
   *d_ptr = 1.234e-5;
+  *f_ptr = 0.12e1;
+  *i_ptr = 1234;
   strcpy (s, "leak_memory function wrote this");
   /* Memory allocated in this function is not freed before function exit */
 }
