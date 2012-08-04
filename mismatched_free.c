@@ -36,6 +36,14 @@ illegal_free_from_heap_outside_allocated_region (void)
 
 /* ------------------------------------------------------------------------ */
 
+struct misc
+{
+  double d;
+  float f;
+  int i;
+  char s[3];
+};
+
 static void
 leak_memory (void)
 {
@@ -43,6 +51,7 @@ leak_memory (void)
   double *d_ptr = malloc (sizeof (double));
   float *f_ptr = malloc (sizeof (float));
   int *i_ptr = malloc (sizeof (int));
+  struct misc *misc_ptr = malloc (sizeof (struct misc));
   *d_ptr = 1.234e-5;
   *f_ptr = 0.12e1;
   *i_ptr = 1234;
