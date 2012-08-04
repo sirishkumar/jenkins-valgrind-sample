@@ -16,7 +16,7 @@ access_uninitialized_int (void)
 {
   int *i_ptr = malloc (sizeof (int));
   char s[1024];
-  sprintf (s, "%d", i_ptr);	/* Reads the contents of uninitialized i_ptr */
+  sprintf (s, "%d", *i_ptr);	/* Reads the contents of uninitialized i_ptr */
   free (i_ptr);
 }
 
