@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TEST_STRING "A test string"
+#define TEST_STRING "A test string that is longer than 12 bytes"
 
 /* ------------------------------------------------------------------------ */
 
@@ -17,6 +17,7 @@ access_already_freed_memory (void)
   free ((void *) s);
   strcpy (s, "");		/* Assigning to already freed memory */
   strcpy (s, TEST_STRING);	/* Assigning to already freed memory */
+  memcpy (s, TEST_STRING, 12);	/* Assigning to already freed memory */
 }
 
 /* ------------------------------------------------------------------------ */
