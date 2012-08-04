@@ -25,6 +25,7 @@ leak_memory (void)
   *i_ptr = 1234;
   *d_ptr = 1.234e-5;
   strcpy (s, "leak_memory function wrote this");
+  /* Memory allocated in this function is not freed before function exit */
 }
 
 /* ------------------------------------------------------------------------ */
@@ -32,7 +33,7 @@ leak_memory (void)
 int
 main (void)
 {
-  leak_memory();
-  illegal_free_from_stack();
+  leak_memory ();
+  illegal_free_from_stack ();
   return 0;
 }
