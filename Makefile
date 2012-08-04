@@ -1,10 +1,12 @@
 CFLAGS += -g
 
-PROGRAMS = already_freed_memory mismatched_free overlapping_copy uninitialized_memory
+PROGRAMS = already_freed_memory illegal_system_calls mismatched_free overlapping_copy uninitialized_memory
 
 all: $(PROGRAMS)
 
 already_freed_memory: already_freed_memory.c
+
+illegal_system_calls: illegal_system_calls.c
 
 mismatched_free: mismatched_free.c
 
