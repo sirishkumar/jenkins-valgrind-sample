@@ -44,7 +44,7 @@ access_already_freed_memory_memcpy (void)
   strcpy (s, TEST_STRING);
   assert (!strcmp (s, TEST_STRING));
   free ((void *) s);
-  memcpy (s, TEST_STRING, 7);	/* Assigning to already freed memory */
+  memcpy (s + 1, TEST_STRING, 5);	/* Assigning to already freed memory */
 }
 
 /* ------------------------------------------------------------------------ */
