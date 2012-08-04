@@ -4,20 +4,34 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TEST_STRING "A test string that is longer than 12 bytes"
+#define BUFFER_SIZE 80
+
+#define TEST_STRING "A test string longer than 12 bytes, less than 80"
 
 /* ------------------------------------------------------------------------ */
 
 static void
-access_already_freed_memory (void)
+access_already_freed_memory_copy_1_byte (void)
 {
-  char *s = malloc (80);
+  char *s = malloc (BUFFER_SIZE);
+  assert (strlen (TEST_STRING) < BUFFER_SIZE);
   strcpy (s, TEST_STRING);
   assert (!strcmp (s, TEST_STRING));
   free ((void *) s);
-  strcpy (s, "");		/* Assigning to already freed memory */
-  strcpy (s + 1, TEST_STRING);	/* Assigning to already freed memory */
-  memcpy (s + 3, TEST_STRING, 12);	/* Assigning to already freed memory */
+  strcpy (s, "");		/* Assigning 1 byte to already freed memory */
+}
+
+/* ------------------------------------------------------------------------ */
+
+static void
+access_already_freed_memory_full_strcpy (void)
+{
+  char *s = malloc (BUFFER_SIZE);
+  assert (strlen (TEST_STRING) < BUFFER_SIZE);
+  strcpy (s, TEST_STRING);
+  assert (!strcmp (s, TEST_STRING));
+  free ((void *) s);
+  strcpy (s, TEST_STRING);	/* Assigning to already freed memory */
 }
 
 /* ------------------------------------------------------------------------ */
@@ -25,6 +39,7 @@ access_already_freed_memory (void)
 int
 main (void)
 {
-  access_already_freed_memory ();
+  access_already_freed_memory_copy_1_byte ();
+  access_already_freed_memory_full_strcpy ();
   return 0;
 }
