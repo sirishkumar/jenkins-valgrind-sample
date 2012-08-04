@@ -6,7 +6,7 @@
 
 #define BUFFER_SIZE 80
 
-#define TEST_STRING "A test string longer than 12 bytes, less than 80"
+#define TEST_STRING "A test?"
 
 /* ------------------------------------------------------------------------ */
 
