@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.SubversionSCM">
+    <locations>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>http://jenkins-valgrind-sample.googlecode.com/svn/trunk</remote>
+        <local>.</local>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+    </locations>
+    <excludedRegions></excludedRegions>
+    <includedRegions></includedRegions>
+    <excludedUsers></excludedUsers>
+    <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers class="vector">
+    <hudson.triggers.SCMTrigger>
+      <spec>* * * * *</spec>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>make clean all</command>
+    </hudson.tasks.Shell>
+    <org.jenkinsci.plugins.valgrind.ValgrindBuilder>
+      <valgrindExecutable></valgrindExecutable>
+      <workingDirectory></workingDirectory>
+      <includePattern>valgrind_*</includePattern>
+      <outputDirectory></outputDirectory>
+      <outputFileEnding>.valgrind.xml</outputFileEnding>
+      <showReachable>false</showReachable>
+      <undefinedValueErrors>true</undefinedValueErrors>
+    </org.jenkinsci.plugins.valgrind.ValgrindBuilder>
+  </builders>
+  <publishers>
+    <org.jenkinsci.plugins.valgrind.ValgrindPublisher>
+      <valgrindPublisherConfig>
+        <pattern>*.xml</pattern>
+        <failThresholdInvalidReadWrite></failThresholdInvalidReadWrite>
+        <failThresholdDefinitelyLost></failThresholdDefinitelyLost>
+        <failThresholdTotal></failThresholdTotal>
+        <unstableThresholdInvalidReadWrite></unstableThresholdInvalidReadWrite>
+        <unstableThresholdDefinitelyLost></unstableThresholdDefinitelyLost>
+        <unstableThresholdTotal></unstableThresholdTotal>
+      </valgrindPublisherConfig>
+    </org.jenkinsci.plugins.valgrind.ValgrindPublisher>
+  </publishers>
+  <buildWrappers/>
+</project>
