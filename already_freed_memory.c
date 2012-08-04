@@ -16,8 +16,8 @@ access_already_freed_memory (void)
   assert (!strcmp (s, TEST_STRING));
   free ((void *) s);
   strcpy (s, "");		/* Assigning to already freed memory */
-  strcpy (s, TEST_STRING);	/* Assigning to already freed memory */
-  memcpy (s, TEST_STRING, 12);	/* Assigning to already freed memory */
+  strcpy (s + 1, TEST_STRING);	/* Assigning to already freed memory */
+  memcpy (s + 3, TEST_STRING, 12);	/* Assigning to already freed memory */
 }
 
 /* ------------------------------------------------------------------------ */
