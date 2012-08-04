@@ -2,7 +2,7 @@ CFLAGS += -g
 
 PROGRAMS = mismatched_free
 
-all: $(PROGRAMS)
+all: indent $(PROGRAMS)
 
 mismatched_free: mismatched_free.c
 
