@@ -1,8 +1,13 @@
-CFLAGS+=-g
+CFLAGS += -g
 
-all: mismatched_free
+PROGRAMS = mismatched_free
+
+all: $(PROGRAMS)
 
 mismatched_free: mismatched_free.c
 
+indent:
+	indent *.c
+
 clean:
-	rm -f mismatched_free *.o
+	rm -f $(PROGRAMS) *.o
