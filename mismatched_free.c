@@ -8,8 +8,8 @@
 static void
 illegal_free_from_stack (void)
 {
-  const char *s = "A string on the stack";
-  free ((void *) s);		/* Freeing a string on the stack */
+  char *s = "A string on the stack";
+  free (s);			/* Freeing a string on the stack */
 }
 
 /* ------------------------------------------------------------------------ */
