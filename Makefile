@@ -1,12 +1,14 @@
 CFLAGS += -g
 
-PROGRAMS = mismatched_free already_freed_memory
+PROGRAMS = already_freed_memory mismatched_free uninitialized_memory
 
 all: $(PROGRAMS)
 
 already_freed_memory: already_freed_memory.c
 
 mismatched_free: mismatched_free.c
+
+uninitialized_memory: uninitialized_memory.c
 
 indent:
 	indent *.c
