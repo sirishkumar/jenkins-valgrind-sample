@@ -5,18 +5,31 @@
 
 /* ------------------------------------------------------------------------ */
 
+#define REGION_SIZE 37
+
 static void
 overlapping_copy (void)
 {
-  void *a1 = malloc (37);
+  void *a1 = malloc (REGION_SIZE);
   void *a2 = a1 + 7;
   int i;
-  memset (a1, 0, 17);		/* Initialize source region */
+  memset (a1, 0, REGION_SIZE);	/* Initialize source region */
   for (i = 0; i < 8; i++)
     {
       memcpy (a1, a2, 10 + i);	/* Source and destination regions overlap */
     }
   free (a1);
+}
+
+/* ------------------------------------------------------------------------ */
+
+static void
+overlapping_copy_a (void)
+{
+  void *a1 = malloc (REGION_SIZE);
+  void *a2 = a1;
+  memset (a1, 0, REGION_SIZE);	/* Initialize source region */
+  memcpy (a1, a2, REGION_SIZE);	/* Source and destination are the same */
 }
 
 /* ------------------------------------------------------------------------ */
