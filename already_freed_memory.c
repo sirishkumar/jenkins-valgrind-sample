@@ -36,10 +36,24 @@ access_already_freed_memory_full_strcpy (void)
 
 /* ------------------------------------------------------------------------ */
 
+static void
+access_already_freed_memory_memcpy (void)
+{
+  char *s = malloc (BUFFER_SIZE);
+  assert (strlen (TEST_STRING) < BUFFER_SIZE);
+  strcpy (s, TEST_STRING);
+  assert (!strcmp (s, TEST_STRING));
+  free ((void *) s);
+  memcpy (s, TEST_STRING, 7);	/* Assigning to already freed memory */
+}
+
+/* ------------------------------------------------------------------------ */
+
 int
 main (void)
 {
   access_already_freed_memory_copy_1_byte ();
   access_already_freed_memory_full_strcpy ();
+  access_already_freed_memory_memcpy ();
   return 0;
 }
