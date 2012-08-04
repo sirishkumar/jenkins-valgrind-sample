@@ -21,6 +21,7 @@ illegal_free_from_heap_inside_allocated_region (void)
 {
   void *p = malloc (1 + rand () % 127);	/* Allocate a randomly sized region up to 128 bytes */
   free (p + 8);			/* Freeing an address inside an allocated region */
+  free (p);			/* Free the correct address */
 }
 
 /* ------------------------------------------------------------------------ */
@@ -30,6 +31,7 @@ illegal_free_from_heap_outside_allocated_region (void)
 {
   void *p = malloc (1 + rand () % 321);	/* Allocate a randomly sized region up to 322 bytes */
   free (p - 4);			/* Freeing an address inside an allocated region */
+  free (p);			/* Free the correct address */
 }
 
 /* ------------------------------------------------------------------------ */
