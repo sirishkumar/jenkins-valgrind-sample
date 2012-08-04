@@ -14,6 +14,16 @@ illegal_free_from_stack (void)
   free ((void *) s);		/* Freeing a string on the stack */
 }
 
+
+/* ------------------------------------------------------------------------ */
+
+static void
+illegal_free_from_heap (void)
+{
+  void *p = malloc (80);
+  free (p + 2);			/* Freeing an address inside an allocated region */
+}
+
 /* ------------------------------------------------------------------------ */
 
 static void
@@ -33,7 +43,8 @@ leak_memory (void)
 int
 main (void)
 {
-  leak_memory ();
   illegal_free_from_stack ();
+  illegal_free_from_heap ();
+  leak_memory ();
   return 0;
 }
