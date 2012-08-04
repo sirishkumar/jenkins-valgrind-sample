@@ -38,5 +38,6 @@ int
 main (void)
 {
   overlapping_copy ();
+  overlapping_copy_a ();
   return 0;
 }
