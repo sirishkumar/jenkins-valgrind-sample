@@ -12,6 +12,17 @@
 /* ------------------------------------------------------------------------ */
 
 static void
+access_uninitialized_double (void)
+{
+  double *d_ptr = malloc (sizeof (double));
+  char s[1024];
+  sprintf (s, "%g", *d_ptr);	/* Reads the contents of uninitialized d_ptr */
+  free (d_ptr);
+}
+
+/* ------------------------------------------------------------------------ */
+
+static void
 access_uninitialized_int (void)
 {
   int *i_ptr = malloc (sizeof (int));
@@ -25,6 +36,7 @@ access_uninitialized_int (void)
 int
 main (void)
 {
+  access_uninitialized_double ();
   access_uninitialized_int ();
   return 0;
 }
