@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define CONSTANT 32
-
 /* ------------------------------------------------------------------------ */
 
 static void
@@ -30,7 +28,7 @@ static void
 illegal_free_from_heap_outside_allocated_region (void)
 {
   void *p = malloc (1 + rand () % 321);	/* Allocate a randomly sized region up to 322 bytes */
-  free (p - 4);			/* Freeing an address inside an allocated region */
+  free (p - 4);			/* Freeing an address outside an allocated region */
   free (p);			/* Free the correct address */
 }
 
