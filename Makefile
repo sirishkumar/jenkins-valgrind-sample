@@ -13,6 +13,9 @@ uninitialized_memory: uninitialized_memory.c
 indent:
 	indent *.c
 
+cppcheck:
+	cppcheck *.c
+
 run: $(PROGRAMS)
 	for program in $(PROGRAMS); do echo $$program; ./$$program; done
 
