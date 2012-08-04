@@ -14,7 +14,7 @@ overlapping_copy (void)
   memset (a1, 0, 17);		/* Initialize source region */
   for (i = 0; i < 8; i++)
     {
-      memcpy (a1, a2, 10);	/* Source and destination regions overlap */
+      memcpy (a1, a2, 10 + i);	/* Source and destination regions overlap */
     }
   free (a1);
 }
