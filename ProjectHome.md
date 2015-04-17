@@ -1,0 +1,1 @@
+Valgrind provides memory use checking and profiling for C programs on Linux by dynamically recompiling the target code and executing it with instrumentation to detect memory misuse.
