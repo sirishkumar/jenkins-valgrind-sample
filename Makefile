@@ -3,7 +3,7 @@ CFLAGS += -g
 PROGRAMS = already_freed_memory illegal_system_calls mismatched_free overlapping_copy uninitialized_memory
 
 all: $(PROGRAMS)
-	for program in $(PROGRAMS); do cp $$program valgrind_$$program; done
+	for program in $(PROGRAMS); do cp $$program /workspace/tests/valgrind_$$program; done
 
 already_freed_memory: already_freed_memory.c
 
@@ -22,7 +22,7 @@ cppcheck:
 	cppcheck *.c
 
 run: $(PROGRAMS)
-	for program in $(PROGRAMS); do echo $$program; ./$$program; done
+	for program in $(PROGRAMS); do echo $$program; /workspace/tests/$$program; done
 
 clean:
 	rm -f $(PROGRAMS) *.o *~ valgrind_*
